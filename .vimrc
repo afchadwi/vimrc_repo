@@ -2,6 +2,8 @@
 " Alex Chadwick
 " afchadwi@umich.edu
 
+set ttymouse=xterm2
+
 set nocompatible
 filetype off
 
@@ -17,7 +19,8 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'MattesGroeger/vim-bookmarks'
 Plugin 'scrooloose/syntastic'
 Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
 Bundle 'majutsushi/tagbar'
 Plugin 'tpope/vim-fugitive'
@@ -30,6 +33,10 @@ Plugin 'gregsexton/gitv'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'tomasr/molokai'
 Plugin 'nanotech/jellybeans.vim'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'shaond/vim-guru'
+Plugin 'NLKNguyen/papercolor-theme'
+Plugin 'chriskempson/base16-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -60,6 +67,7 @@ set hidden
 set tabstop=2
 set backspace=indent,eol,start
 set autoindent
+set smartindent
 set copyindent
 set number
 set shiftwidth=2
@@ -68,12 +76,13 @@ set showmatch
 set ignorecase
 set smartcase
 set smarttab
+set expandtab
 set hlsearch
 set incsearch
 set tw=0
 
-set lines=92
-set columns=180
+set lines=99
+set columns=206
 
 set history=1000
 set undolevels=1000
@@ -88,7 +97,7 @@ let fortran_do_enddo=1
 " Plugin config
 set laststatus=2
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 if !exists('g:airline_symbols')
 	let g:airline_symbols = {}
 endif
@@ -108,6 +117,8 @@ set pastetoggle=<F2>
 nnoremap <F4> :set nonumber!<CR>
 "Toggle for UndoTree
 nnoremap <F6> :UndotreeToggle<CR>
+"Toggle key to highlight lines past 132 characters
+nnoremap <F3> :/\%>132v.\+<CR>
 " Fix behavior of home key (go to bol, not first column, but go to first column if at bol)
 "map <Home> ^
 "imap <Home> <Esc>0I
@@ -127,11 +138,15 @@ colorscheme molokai
 " Enable mouse support
 set mouse=a
 
-set guifont=Source\ Code\ Pro\ for\ Powerline:h12
+set guifont=Monaco:h10
 
 """"""""""""""""""""""""""""""
 " airline
 """"""""""""""""""""""""""""""
-let g:airline_theme             = 'powerlineish'
+let g:airline_theme             = 'dark'
 let g:airline_enable_branch     = 1
 let g:airline_enable_syntastic  = 1
+
+
+" Configure GitGutter
+let g:gitgutter_max_signs=16000
