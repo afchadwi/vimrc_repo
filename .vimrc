@@ -17,7 +17,7 @@ Plugin 'gmarik/Vundle.vim'
 " Plugins
 Plugin 'scrooloose/nerdtree'
 Plugin 'MattesGroeger/vim-bookmarks'
-Plugin 'scrooloose/syntastic'
+"Plugin 'scrooloose/syntastic'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -81,8 +81,8 @@ set hlsearch
 set incsearch
 set tw=0
 
-set lines=99
-set columns=206
+set lines=60
+set columns=160
 
 set history=1000
 set undolevels=1000
@@ -119,6 +119,9 @@ nnoremap <F4> :set nonumber!<CR>
 nnoremap <F6> :UndotreeToggle<CR>
 "Toggle key to highlight lines past 132 characters
 nnoremap <F3> :/\%>132v.\+<CR>
+"Toggle key to clear all highlighting and the search pattern
+nnoremap <M-F3> :let @/ = ""<CR>
+
 " Fix behavior of home key (go to bol, not first column, but go to first column if at bol)
 "map <Home> ^
 "imap <Home> <Esc>0I
@@ -136,7 +139,11 @@ inoremap <silent> <Home> <C-O>:call ExtendedHome()<CR>
 colorscheme molokai
 
 " Enable mouse support
-set mouse=a
+set mouse+=a
+if &term =~ '^screen'
+  " tmux knows the extended mouse mode
+  set ttymouse=xterm2
+endif
 
 set guifont=Monaco:h10
 
@@ -145,8 +152,17 @@ set guifont=Monaco:h10
 """"""""""""""""""""""""""""""
 let g:airline_theme             = 'dark'
 let g:airline_enable_branch     = 1
-let g:airline_enable_syntastic  = 1
+let g:airline_enable_syntastic  = 0
 
 
 " Configure GitGutter
 let g:gitgutter_max_signs=16000
+
+" Speed up vim graphics a bit
+set lazyredraw
+set ttyfast
+
+" Disable background colors
+if &term =~ '256color'
+  set t_ut=
+endif
