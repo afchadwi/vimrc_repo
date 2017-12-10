@@ -81,8 +81,8 @@ set hlsearch
 set incsearch
 set tw=0
 
-set lines=60
-set columns=160
+"set lines=60
+"set columns=160
 
 set history=1000
 set undolevels=1000
